@@ -1,3 +1,4 @@
+# Александра Звагельская, 17-я когорта — Финальный проект. Инженер по тестированию плюс
 import pytest
 import requests
 import configuration
