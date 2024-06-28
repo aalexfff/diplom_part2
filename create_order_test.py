@@ -2,13 +2,15 @@
 import pytest
 import requests
 import configuration
+import data
 
-#Функция для создания заказа, возвращает номер заказа
-def order():
-    response = requests.post(configuration.URL_SERVICE + configuration.CREATE_ORDER, json = configuration.order_body)
-    return response.json()["track"]
+
 
 #Тест на получения заказа по трэку
 def test_positive_assert():
-    response = requests.get(configuration.URL_SERVICE + configuration.GET_ORDER + "order()")
-    assert response.status_code == 200
+    response1 = requests.post(configuration.URL_SERVICE + configuration.CREATE_ORDER, json=data.order_body)
+    track = response1.json()["track"]
+    response2 = requests.get(configuration.URL_SERVICE + configuration.GET_ORDER + str(track))
+    assert response2.status_code == 200
+
+
